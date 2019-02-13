@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>head</title>
+	<style v-template-style>
+		.homepage-main{width:100%;flex:1;}
+		.homepage-inner{width:100%;display:flex;flex-direction:column;flex: 1;height: calc(100vh - 70px)}
+		/*模块边框*/
+		.ibox{height:100%;position:relative;display:inline-block;}
+		.homepage-main .ibox{padding:0 10px;background:rgba(21,75,138,.3);}
+		.ibox .left{width:1px;height:100%;position:absolute;left:0;top:0;border-left:1px solid #21c6fc;}
+		.ibox .right{width:1px;height:100%;position:absolute;right:0;top:0;border-right:1px solid #21c6fc;}
+		.ibox .left:after,.right:after,.left:before,.right:before{content:'';display:block;height:7px;width:1px;background-color:#21c6fc;position:absolute;}
+		.ibox .left:after{left:0;bottom:0;transform:rotate(115deg);transform-origin:-0 bottom;}
+		.ibox .left:before{transform:rotate(-115deg);transform-origin:0 top;}
+		.ibox .right:after{right:0;bottom:0px;transform:rotate(-115deg);transform-origin:1px bottom;}
+		.ibox .right:before{right:0;top:0px;transform:rotate(115deg);transform-origin:1px top;}
+		.main-wrap{padding:30px 20px;display:flex!important;flex-direction:column;flex:1;}
+		.main-top{display:flex;flex:2}
+		.main-top-left-wrap{display:flex;flex-direction:column;flex:3}
+		.main-bottom{display:flex;}
+		.main-top-top{height:100px;/*margin-bottom:30px;*/display:flex;}
+		.main-top-bottom{display:flex;flex:1;}
+		.main-top-right{flex:1;display:flex;flex-direction:column;}
+		.main-top-right .r-item{flex:1;}
+		.main-top-bottom-left{display:flex;flex-direction:column;flex:1;}
+		.main-top-bottom-left .l-item{flex:1;}
+		.main-top-bottom-right{flex:2;position: relative;display: flex;flex-direction: column;}
+		.main-top-bottom-right #indexMap{flex:1;}
+		.main-bottom-left{flex:1;}
+		.main-bottom-center{flex:2;display:flex;justify-content:space-around;padding:10px;overflow: hidden;padding-bottom: 35px;box-sizing: border-box;overflow: hidden;}
+		.main-bottom-right{flex:1;display:flex;flex-direction:column;}
+		.c-item{margin:0 5px;display: flex;flex-direction: column;}
+		.c-item:nth-child(1){flex:4;}
+		.c-item:nth-child(2){flex:3}
+		.c-item:nth-child(3){flex:3}
+		.c-item:nth-child(4){flex:5}
+		.main-top-top .ibox{height:100%;display:inline-block;margin-right:2%;position:relative;max-width:120px;}
+		.ibox{background:rgba(21,75,138,.3);}
+		.i-content{display:flex;height:100%;flex-direction:column;justify-content:center;align-items:center;padding-top:30px;box-sizing: border-box;}
+		.i-content p:nth-child(1){color:#fff;font-size:20px;}
+		.i-content p:nth-child(2){color:#fff;font-size:20px;}
+		.c-item .ibox{background:transparent;display:block;margin-right:0;position:relative;height:100%;flex:1;}
+		.c-item .ibox .left{border-left:1px solid #fff;}
+		.c-item .ibox .right{border-right:1px solid #fff;}
+		.c-item .left:after,.c-item .right:after,.c-item .left:before,.c-item .right:before{background:#fff;}
+		.l-item,.r-item,.main-bottom-left{display:flex;flex-direction:column;}
+		.echart-box-flex{flex:1;}
+		#info-big{width:100%;}
+		.info-small > li{max-width:120px;}	
+
+		.c-item .topBar{width: 100%;height: 30px;line-height: 30px;background: rgba(255,255,255,.2);color: #fff;position: absolute;left: 0px;top:0px;right:0px;text-align: center;font-size: 0.12rem;overflow: hidden;}
+		#hacker-list {width: 100%;position: absolute;top: 30px;left:0;right: 0;bottom: 0;}
+		#hacker-list ul.list{list-style:none;padding:0 10px;overflow-y: hidden;height: 100%;}
+		#hacker-list  ul.list>li{height:.16rem;line-height:.16rem;color:#fff;padding:0 10px 5px;margin:8px 0 0;font-size:.12rem;cursor:pointer;text-align:center;}
+		#hacker-list  ul.list>li:nth-child(1){color:#6d8cff;font-size:.12rem;}
+		#hacker-list  ul.list>li:nth-child(2){background-color:#3e245d;border-left:2px solid #ff3f75;
+
+		 }
+		#hacker-list  ul.list>li:nth-child(3){background-color:#1f3275;border-left:2px solid #3f95ff;}
+		#hacker-list  ul.list>li:nth-child(4){background-color:#1e3b6a;border-left:2px solid #30d5b4;}
+		#hacker-list  ul.list>li::after{clear:both;}
+		#hacker-list  ul.list>li:hover:not(:first-child){box-shadow:0 4px 20px rgba(0,0,0,.3);border-radius:4px;transform:scale(1.1);  /*border: none;*/}
+		#hacker-list  ul.list>li>span{display:inline-block;float:left;}
+		#hacker-list  ul.list>li>span:nth-child(1){width:20%;}
+		#hacker-list  ul.list>li>span:nth-child(2){width:38%; white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+		#hacker-list  ul.list>li>span:nth-child(3),span:nth-child(4){width:20%;}
+		.pink{background-image:url(./vendor/list/img/arrow_pink.png);background-repeat:no-repeat;background-position:90% 50%;background-size:12px 12px;}
+		.grey{background-image:url(./vendor/list/img/arrow_grey.png);background-repeat:no-repeat;background-position:90% 50%;background-size:12px 12px;}
+
+		#hacker-list2 {width: 100%;position: absolute;top: 30px;left:0;right: 0;bottom: 0;}
+		#hacker-list2 ul.list {
+			overflow: hidden;
+			height: 100%;
+		}
+		#hacker-list2 ul.list>li {
+		  height: .16rem;
+		  line-height: .16rem;
+		  color: #fff;
+		  padding: 0 10px 5px;
+		  font-size: .12rem;
+		  cursor: pointer;
+		}
+
+		#hacker-list2 ul.list>li:nth-child(1) {
+		  color: #6d8cff;
+		  font-size: .12rem;
+		}
+
+		#hacker-list2 ul.list>li::after {
+		  clear: both;
+		}
+
+		#hacker-list2 ul.list>li:hover:not(:first-child) {
+		  box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+		  border-radius: 4px;
+		  transform: scale(1.1);
+		  border: none;
+		}
+
+		#hacker-list2 ul.list>li>span {
+		  display: inline-block;
+		}
+
+		#hacker-list2 ul.list>li>span:nth-child(2) {
+		  float: right;
+		  color: #fa23ae;
+		}
+
+		#hacker-list2 ul.list>li:nth-child(1)>span:nth-child(2) {
+		  color: #6d8cff;
+		}
+
+		#hacker-list3 {width: 100%;position: absolute;top: 50px;left:0;right: 0; height: calc(100% - 50px);}
+		#hacker-list3 ul.list {padding: 0 10px;}
+		#hacker-list3 ul.list>li {
+		  height: .16rem;
+		  line-height: .16rem;
+		  color: #fff;
+		  padding: 0 10px 5px;
+		  font-size: .12rem;
+		  cursor: pointer;
+		}
+
+		#hacker-list3 ul.list>li>span.title{
+			width: 70%;
+    	white-space: nowrap;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+		}
+
+		#hacker-list3 ul.list>li::after {
+		  clear: both;
+		}
+
+		#hacker-list3 ul.list>li:hover {
+		  box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+		  border-radius: 4px;
+		  /*transform: scale(1.1);*/
+		  border: none;
+		}
+
+		#hacker-list3 ul.list>li:nth-of-type(odd) {
+		  background-color: #3c549a;
+		}
+
+		#hacker-list3 ul.list>li>span {
+		  display: inline-block;
+		  overflow: hidden;
+		}
+
+		#hacker-list3 ul.list>li>span:nth-child(2) {
+			width: 30%;
+			white-space:nowrap;
+		  	float: right;
+		  	line-height: 100%;
+		  	/*overflow: hidden;*/
+		}
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			#hacker-list3 ul.list>li,#hacker-list2 ul.list>li,#hacker-list ul.list > li{
+				padding-bottom:0!important;
+			}
+    }
+		.layui-layer{
+			background: url(../resource/image/tooltip-bg.png);
+			background-size: cover;
+			padding: 0.1rem 0.09rem 0.18rem 0.32rem;
+			box-sizing: border-box;
+		}
+		.layui-layer h2{
+			margin: 0;
+			font-size: 0.16rem;
+			color: #06ebff;
+			line-height: 0.24rem;
+			text-align: center;
+		}
+		.layui-layer h4{
+			text-align: center;
+			color: #fff;
+			line-height: .2rem;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.layui-layer h4 span{
+			margin-right: .05rem;
+		}
+		.layui-layer textarea {
+				height: calc( 100% - .72rem);
+				width: calc(100% - .05rem);
+				background: transparent;
+				color: #fff;
+				border: none;
+				padding: 0;
+		}
+	</style>
+
+	</head>
+
+	<body>
+		<div class="root" v-template-root>
+			<div id="homepage-main" class="homepage-main" style="display: block;">
+				<div class="homepage-inner">
+					<section class="main-wrap">
+						<div class="main-top">
+							<div class="main-top-left-wrap">
+								<div class="main-top-top">
+									<div id="info-big"></div>
+								</div>
+								<div class="main-top-bottom">
+									<div class="main-top-bottom-left">
+										<div class="l-item">
+											<div class="title">
+												<p class="titlt-name">
+													<b>参展企业数量走势</b>
+												</p>
+												<i class="icon">
+								                    <span class="skew"></span>
+								                    <span class="line"></span>
+								                 </i>
+											</div>
+											<div id="box3" class="echart-box-flex" class="echart-box-flex"></div>
+										</div>
+										<div class="l-item">
+											<div class="title">
+												<p class="titlt-name">
+													<b>参展酒企类型走势</b>
+												</p>
+												 <i class="icon">
+								                    <span class="skew"></span>
+								                    <span class="line"></span>
+								                  </i>
+											</div>
+											<div id="box" class="echart-box-flex"></div>
+										</div>
+									</div>
+									<div class="main-top-bottom-right" >
+										<div class="title">
+											<p class="titlt-name">
+												<b>参展企业热力图</b>
+											</p>
+											<i class="icon small-icon">
+								              <span class="skew"></span>
+								              <span class="line"></span>
+								            </i>
+										</div>
+										<div class="titleBtn abs">
+											<div class="btnStyle flowOut active" id='index-china-btn'>
+												全国
+											</div>
+											<div class="btnStyle flowInto" id='index-world-btn'>
+												全球
+											</div>
+										</div>
+										<div id='indexMap' style="width: 100%;height: 100%"></div>
+									</div>
+								</div>
+							</div>
+							<div class="main-top-right">
+								<div class="r-item">
+									<div class="title">
+										<p class="titlt-name">
+											<b>展品类型数量分布及走向</b>
+										</p>
+										<i class="icon">
+						                    <span class="skew"></span>
+						                    <span class="line"></span>
+						                    
+						                </i>
+									</div>
+									<div id="box2" class="echart-box-flex"></div>
+								</div>
+								<div class="r-item">
+									<div class="title">
+										<p class="titlt-name">
+											<b>展品口味分布</b>
+										</p>
+										<i class="icon">
+						                    <span class="skew"></span>
+						                    <span class="line"></span>
+						                </i>
+									</div>
+									<div id="box5" class="echart-box-flex"></div>
+								</div>
+								<div class="r-item">
+									<div class="title">
+										<p class="titlt-name">
+											<b>展品酒精度分布</b>
+										</p>
+										<i class="icon">
+						                    <span class="skew"></span>
+						                    <span class="line"></span>
+						                </i>
+									</div>
+									<div id="box6" class="echart-box-flex"></div>
+								</div>
+							</div>
+						</div>
+						<div class="main-bottom">
+							<div class="main-bottom-left">
+								<div class="title">
+									<p class="titlt-name">
+										<b>观展人数走势</b>
+									</p>
+									<i class="icon">
+					                    <span class="skew"></span>
+					                    <span class="line"></span>
+					                </i>
+								</div>
+								<div id="box4" class="echart-box-flex"></div>
+							</div>
+							<div class="main-bottom-center">
+								<div class="c-item">
+									
+									<div class="ibox">
+										<div class="i-content">
+											<div class="topBar">参展企业数-省份排行</div>
+											  <div id="hacker-list">
+											    <ul class="list">
+											      <li>
+											        <span>&nbsp;</span>
+											        <span>&nbsp;</span>
+											        <span>2017&nbsp;&nbsp;</span>
+											        <span>&nbsp;&nbsp;2016</span>
+											      </li>
+											    </ul>
+											</div>
+										</div>
+										<p class="left"></p>
+										<p class="right"></p>
+									</div>
+								</div>
+								<div class="c-item">
+									<div class="ibox">
+										<div class="i-content">
+											<div class="topBar">舆情热词</div>
+											<div id="bubbleCloud"></div>
+										</div>
+										<p class="left"></p>
+										<p class="right"></p>
+									</div>
+								</div>
+								<div class="c-item">
+									<div class="ibox">
+										<div class="i-content">
+											<div class="topBar">舆情统计</div>
+											<div id="hacker-list2">
+											    <ul class="list">
+											      <li>
+											        <span>来源</span>
+											        <span>实时数量</span>
+											      </li>
+											    </ul>
+											  </div>
+
+										</div>
+										<p class="left"></p>
+										<p class="right"></p>
+									</div>
+								</div>
+								<div class="c-item">
+									<div class="ibox">
+										<div class="i-content">
+										<div class="topBar">舆情推送</div>
+										 <div id="hacker-list3">
+										    <ul class="list">
+										    </ul>
+										  </div>
+
+										</div>
+										<p class="left"></p>
+										<p class="right"></p>
+									</div>
+									<div class="tooltip-list3" title="This is my span's tooltip message!" style="display: none;">
+										<p class="tooltip-title"></p>
+										<p class="tooltip-source"></p>
+									</div>
+								</div>
+							</div>
+							<div class="main-bottom-right">
+								<div class="title">
+									<p class="titlt-name">
+										<b>舆情走势</b>
+									</p>
+									<i class="icon">
+					                    <span class="skew"></span>
+					                    <span class="line"></span>
+					                </i>
+								</div>
+								<div id="box1" style="flex:1"></div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

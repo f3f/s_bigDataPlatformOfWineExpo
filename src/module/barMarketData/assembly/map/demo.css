@@ -1,0 +1,56 @@
+html {
+  font-size: calc(100vw / 13.66);
+  /* background-color: #192068; */
+}
+
+h1,
+#btn1,
+#btn2 {
+  font-size: 16px;
+}
+
+#chinaMap,
+#worldMap {
+  width: 600px;
+  height: 450px;
+  border: 1px solid red;
+  position: relative;
+  float: left;
+  margin-right: 50px;
+  position: relative;
+}
+
+.area_name {
+  font-size: 12px;
+  fill: #000;
+}
+
+.map_popOver {
+  position: absolute;
+  width: 3.9rem;
+  height: 2rem;
+  background: url(./imgs/tooltip-bg.png);
+  background-size: cover;
+  padding: 0.1rem 0.09rem 0.18rem 0.32rem;
+  box-sizing: border-box;
+}
+
+.map_popOver h4 {
+  margin: 0;
+  font-size: 0.22rem;
+  color: #06ebff;
+  line-height: 0.46rem;
+}
+
+.map_popOver p {
+  margin: 0;
+  font-size: 0.14rem;
+  line-height: 0.3rem;
+  color: #fff;
+}
+
+.china-line {
+  width: 0.3rem;
+  height: 1.5rem;
+  position: absolute;
+}

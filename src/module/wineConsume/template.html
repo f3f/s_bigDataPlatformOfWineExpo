@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>导航</title>
+		<style v-template-style>
+			.wineConsume {
+				display: flex;
+				flex: 1;
+				overflow: hidden;
+				flex-direction: column;
+			}
+			
+			.main-wrap3 {
+				display: flex;
+				justify-content: space-around;
+				flex-direction: row;
+				flex:1;
+			}
+			
+			.left-content,
+			.right-content {
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			
+			.center-content {
+				display: flex;
+				flex: 2;
+				flex-direction: column;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			
+			#wineConsume .left-content,
+			#wineConsume .center-content,
+			#wineConsume .right-content {
+				padding-top: 20px;
+				box-sizing: border-box;
+			}
+			/** 左侧部分样式 */
+			
+			.left-content .left-content-top,
+			.left-content .left-content-center,
+			.left-content .left-content-bottom {
+				display: flex;
+				flex-direction: column;
+				/*flex: 1;*/
+			}
+			/*模拟下拉框*/
+			
+			.mnSelect {
+				width: 92px;
+				height: 28px;
+				margin-left: 10%;
+			}
+			
+			.leftTopTitle {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.leftTopTitle .titlt-name {
+				flex: 2;
+			}
+			
+			.leftTopTitle .icon {
+				flex: 1;
+			}
+			
+			.leftTopTitle .mnSelect {
+				flex: 1;
+			}
+			/** 左侧echarts图样式 */
+			
+			.left-topLineEchart,
+			.left-centerLineEchart,
+			.left-bottomPieEchart {
+				flex: 1;
+			}
+			/** 中间部分样式 */
+			
+			.center-content .center-content-top,
+			.center-content .center-content-bottom {
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.center-content .center-content-top {
+				/*flex: 2;*/
+			}
+			
+			.center-content .center-content-bottom {
+				flex: 1;
+			}
+			/** 中间部分echarts样式 **/
+			
+			.center-bottomLineEchart,
+			.center-topMapEchart {
+				flex: 1;
+				display: flex;
+			}
+			.center-topTitle {
+				display: ;
+				display: flex;
+				flex-direction: row;
+			}			
+			.center-content-top .title {
+				flex: 3;
+			}
+			
+			.titleBtn {
+				flex: 2;
+			}
+			
+			.btnStyle {
+				width: 80px;
+				height: 30px;
+				line-height: 28px;
+				margin-right: 15px;
+				text-align: center;
+				background: url(../resource/image/borderBg.png) no-repeat;
+				cursor: pointer;
+				display: inline-block;
+				color: #fff;
+				background-position: 0 -33px;
+			}
+			
+			.btnStyle.active {
+				background-position: 0 0;
+			}
+			
+			.btnStyle:hover {
+				opacity: 0.7;
+			}
+			/** 右侧部分样式 */
+			
+			.right-content .right-contentTop {
+				flex: 1;
+			}
+			
+			.right-content .right-contentBottom {
+				flex: 2;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.right-contentTop {
+				display: flex;
+				flex-direction: row;
+			}
+			
+			.right-contentTop .right-topLeft,
+			.right-contentTop .right-topRight {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				padding:0 10px;
+			}
+			
+			.right-topLiftTable,
+			.right-topRightTable,
+			.right-bottomTable {
+				display: flex;
+				flex: 1;
+			}
+			.right-topLiftTable{
+				display: flex;
+			}
+			.TableFlex .list{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			.TableFlex .list li{
+				flex: 1;
+			}
+			.TableFlex .list li span{
+				flex: 1;
+			}
+			/** 列表样式 */
+			
+			.right-contentTop ul.list {
+				list-style: none;
+			}
+			
+			.right-contentTop ul.list>li {
+				flex: 1;	
+				padding: 2px 10px;box-sizing: border-box;
+				display: flex;
+				align-items: center;
+				font-variant: middle;						
+				color: #fff;
+				margin: 0.04rem 0 0;
+				font-size: 0.12rem;
+				cursor: pointer;
+				white-space: nowrap;
+			}
+			
+			.right-contentTop ul.list>li:nth-child(1) {
+				background-color: #3e245d;
+				border-left: 2px solid #ff3f75;
+			}
+			
+			.right-contentTop ul.list>li:nth-child(2) {
+				background-color: #1f3275;
+				border-left: 2px solid #3f95ff;
+			}
+			
+			.right-contentTop ul.list>li:nth-child(3) {
+				background-color: #1e3b6a;
+				border-left: 2px solid #30d5b4;
+			}
+			
+			.right-contentTop ul.list>li:nth-child(1)::before,
+			.right-contentTop ul li:nth-child(2)::before,
+			.right-contentTop ul li:nth-child(3)::before {
+				content: 'Top';
+				float: left;
+			}
+			
+			.right-contentTop ul.list>li::after {
+				content: ' ';
+				clear: both;
+			}
+			
+			.right-contentTop ul.list>li:hover {
+				box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+				border-radius: 4px;
+				transform: scale(1.1);
+				/*border: none;*/
+			}
+			
+			.right-contentTop ul.list>li>span {
+				display: inline-block;
+			}
+			
+			.right-contentTop ul.list>li>span.provice {
+				text-align: right;
+				float: right;
+			}
+			.right-contentTop ul.list>li>span.index {
+				float: left;
+			}
+			/** 右侧下边样式 */
+			
+			.right-bottomTable ul.list {
+				
+				list-style: none;
+				padding: 0;
+				counter-reset: sectioncounter;
+			}
+			
+			.right-bottomTable ul.list>li {
+				color: #fff;
+				margin: 0.08rem 0 0;
+				font-size: 0.12rem;
+				cursor: pointer;
+				text-align: center;
+				white-space: nowrap;
+			}
+			
+			.right-bottomTable ul.list>li:nth-child(1) {
+				color: #6d8cff;
+				font-size: 0.12rem;
+			}
+			
+			.right-bottomTable ul.list>li::after {
+				clear: both;
+			}
+			
+			.right-bottomTable ul.list>li:hover:not(:first-child) {
+				box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+				border-radius: 4px;
+				transform: scale(1.1);
+			}
+			
+			.right-bottomTable ul.list>li:nth-of-type(odd):not(:first-child) {
+				background-color: #22327d;
+			}
+			
+			.right-bottomTable ul.list>li>span {
+				display: inline-block;
+				float: left;
+			}
+			
+			.right-bottomTable ul.list>li>span:nth-child(1) {
+				width: 15%;
+			}
+			
+			.right-bottomTable ul.list>li:not(:first-child)>span:nth-child(1)::before {
+				content: counter(sectioncounter);
+				counter-increment: sectioncounter;
+			}
+			
+			.right-bottomTable ul.list>li>span:nth-child(2) {
+				width: 35%;
+			}
+			
+			.right-bottomTable ul.list>li>span:nth-child(3) {
+				width: 25%;
+			}
+			
+			/*.right-bottomTable ul.list>li>span:nth-child(3)::after {
+				content: '单'
+			}*/
+			
+			.right-bottomTable ul.list>li>span:nth-child(4) {
+				width: 25%;
+				color: #f01f88;
+			}
+			
+			/*.right-bottomTable ul.list>li>span:nth-child(4)::after {
+				content: '元'
+			}*/
+			/** 中间地图的css */
+
+			.tooltip {
+			    position: absolute;
+			    left: 0;
+			    top: 0;
+			    background-color: rgba(0, 0, 0, 0.8);
+			    color: #FFFFFF;
+			    border-radius: 5px;
+			    padding: 5px 10px;
+			    box-sizing: border-box;
+			    display: none;
+			}
+			/*修改bug*/
+			/*.right-topLeft,.right-topRight{
+				display: flex;
+				flex-direction: column;
+			}
+			.right-topLeft .list,.right-topRight .list{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			.right-topLeft .list li,.right-topRight .list li{
+				flex: 1;
+				display: flex;
+				align-items: center;
+			}			
+			*/
+			
+			.right-bottomTable{
+				display: flex;
+				flex-direction: column;
+			}
+			.right-bottomTable .list{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			.right-bottomTable .list li{
+				flex: 1;
+				display: flex;
+				align-items: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="root" v-template-root>
+			<div class="wineConsume" style="display: none" id='wineConsume'>
+				<div class="wineConsume">
+					<section class="main-wrap3">
+						<div class="left-content">
+							<div class="left-content-top">
+								<div class="title leftTopTitle">
+									<p class="titlt-name">
+										<b class="titleName">白酒产量趋势及预测</b>
+									</p>
+									<i class="icon big-icon">
+							          <span class="skew"></span>
+							          <span class="line"></span>
+							        </i>
+									<div class="mnSelect"></div>
+								</div>
+								<div class="left-topLineEchart"></div>
+							</div>
+							<div class="left-content-center">
+								<div class="title">
+									<p class="titlt-name">
+										<b>酒类电商品类销售额分布</b>
+									</p>
+									<i class="icon big-icon">
+							          <span class="skew"></span>
+							          <span class="line"></span>
+							        </i>
+								</div>
+								<div class="left-centerLineEchart"></div>
+							</div>
+							<div class="left-content-bottom">
+								<div class="title">
+									<p class="titlt-name">
+										<b>洒类产品销售额占比</b>
+									</p>
+									<i class="icon big-icon">
+							          <span class="skew"></span>
+							          <span class="line"></span>
+							        </i>
+								</div>
+								<div class="left-bottomPieEchart" id='left-bottomPieEchart'></div>
+							</div>
+						</div>
+						<div class="center-content">
+							<div class="center-content-top">
+								<div class="center-topTitle">
+									<div class="title">
+										<p class="titlt-name">
+											<b>流入流出分布图</b>
+										</p>
+										<i class="icon small-icon">
+								          <span class="skew"></span>
+								          <span class="line"></span>
+								        </i>
+									</div>
+									<div class="titleBtn" id="wineST">
+										<div class="btnStyle flowOutS active" id='flowOut'>流出</div>
+										<div class="btnStyle flowIntoS" id='flowInto'>流入</div>
+									</div>
+								</div>
+								<div class="center-topMapEchart" >
+									<div id="wineMap"></div>
+									
+								</div>
+							</div>
+							<div class="center-content-bottom">
+								<div class="title center-bottom-title">
+									<p class="titlt-name">
+										<b>人均日饮酒量排名</b>
+									</p>
+									<i class="icon small-icon">
+							          <span class="skew"></span>
+							          <span class="line"></span>
+							        </i>
+								</div>
+								<div class="center-bottomLineEchart"></div>
+							</div>
+						</div>
+						<div class="right-content">
+							<div class="right-contentTop">
+								<div class="right-topLeft">
+									<div class="title wineTitle">
+										<p class="titlt-name">
+											<b>流入最高</b>
+										</p>
+										<i class="icon">
+								          <span class="skew"></span>
+								          <span class="line"></span>
+								        </i>
+									</div>
+									<div class="right-topLiftTable TableFlex" id="hacker-listwineLeft">
+										<ul class="list"></ul>
+									</div>
+								</div>
+								<div class="right-topRight">
+									<div class="title wineTitle">
+										<p class="titlt-name">
+											<b>流出最高</b>
+										</p>
+										<i class="icon">
+								          <span class="skew"></span>
+								          <span class="line"></span>
+								        </i>
+									</div>
+									<div class="right-topRightTable TableFlex" id="hacker-listwineRight">
+										<ul class="list"></ul>
+									</div>
+								</div>
+							</div>
+							<div class="right-contentBottom">
+								<div class="title wineTitle">
+									<p class="titlt-name">
+										<b>销量排行</b>
+									</p>
+									<i class="icon">
+							          <span class="skew"></span>
+							          <span class="line"></span>
+							        </i>
+								</div>
+								<div class="right-bottomTable" id="hacker-list1">
+									<ul class="list">
+										<li>
+											<span>排名</span>
+											<span>品牌</span>
+											<span>销量(单)</span>
+											<span>销售额(元)</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

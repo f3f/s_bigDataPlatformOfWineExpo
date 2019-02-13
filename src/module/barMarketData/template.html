@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>导航</title>
+		<style v-template-style>
+			.barMarketData{
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			.main-wrapyj{
+				display: flex;
+				flex: 1;
+			}
+			.bar-type {
+				height: 30px;
+			}
+			
+			.business-type {
+				height: 70px;	
+			}
+
+			.rank {
+				width: 100%;
+				margin: 20px 0;
+			}
+			/*中间样式*/
+			
+			.center_container {
+				flex: 1;
+				display: flex;
+				display: -webkit-flex;
+				flex-direction: column;
+				box-sizing: border-box;
+			}
+			
+			.center-flex1 {
+
+				flex: 1;
+				box-sizing: border-box;
+			}
+			
+			.center-flex2 {
+
+				/*flex: 2;*/
+				box-sizing: border-box;
+			}
+			.center-flex7 {
+
+				flex: 7;
+				overflow: hidden;
+			}
+			.center-flex5 {
+
+				flex: 5;
+			}
+			.center-flex4 {
+
+				flex: 4;
+				
+			}
+			.center-content{
+				
+				padding-top: 60px;
+				box-sizing: border-box;
+			}
+			.right-content{
+				padding-top: 60px;
+				box-sizing: border-box;
+			}
+			.left-content{
+				padding: 0 20px;
+			}
+			.bar-type{
+				margin-top: 0px;
+			}
+			.echart-flex{
+				display: flex;
+				flex-direction: column;
+			}
+			.echart-spread-flex{
+				flex: 1;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+
+			}
+			
+			.title-margin{
+				position: relative;
+			}
+			.area{
+				position: absolute;
+				right: 2%;
+				top: 10px;
+				display: flex;
+			}
+			.area-type{
+				width: 80px;
+				height: 30px;
+				color: #fff;
+				flex: 1;
+				position: relative;
+				margin-left: 20px;
+				
+			}
+		
+			.text{
+				text-align: center;
+				line-height: 30px;
+			}
+		
+			
+			/*线框样式*/
+			.business-type .ibox {
+				height: 100%;
+				margin-right: 2%;
+				position: relative;
+				flex: 1;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0;
+			}
+			.ibox{
+				background: rgba(21, 75, 138,.3);
+			}
+			.ibox .left {
+				width: 1px;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-left: 1px solid #21c6fc;
+			}
+			.ibox .right {
+				width: 1px;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				border-right: 1px solid #21c6fc;
+			}
+			.ibox .left:after,
+			.right:after,
+			.left:before,
+			.right:before {
+				content: '';
+				display: block;
+				height: 7px;
+				width: 1px;
+				background-color: #21c6fc;
+				position: absolute;
+			}
+			.ibox .left:after {
+				left: 0;
+				bottom: 0;
+				transform: rotate(115deg);
+				transform-origin: -0 bottom;
+			}
+			.ibox .left:before {
+				transform: rotate(-115deg);
+				transform-origin: 0 top;
+			}
+			.ibox .right:after {
+				right: 0;
+				bottom: 0px;
+				transform: rotate(-115deg);
+				transform-origin: 1px bottom;
+			}
+			.ibox .right:before {
+				right: 0;
+				top: 0px;
+				transform: rotate(115deg);
+				transform-origin: 1px top;
+			}
+			.i-content {
+				display: flex;
+				height: 100%;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				align-content: center;
+			}
+			.i-content p:nth-child(1) {
+				color: #fff;
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.i-content p:nth-child(2) {
+				color: #06ebff;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			/*图表*/
+			
+			/*酒企分布排行*/
+			.echart-rel div.hacker-list {
+			  position: relative;
+			  width: 500px;
+			  margin: 0 auto;
+			}
+			
+			.sub-list{
+				width: 46%;
+			}
+			
+			div#sub-list01>h3,
+			div#sub-list02>h3 {
+			  color: #6d8cff;
+			  font-size: 14px;
+			  text-align: center;
+			}
+			
+			.echart-rel ul.list {
+			  list-style: none;
+			  padding: 0;
+			  counter-reset:sectioncounter;
+			}
+			
+			.echart-rel ul.list>li {
+			  color: #fff;
+			 /* margin: 12px 0 0;*/
+			  font-size: 14px
+			  cursor: pointer;
+			}
+			
+			.echart-rel ul.list>li:nth-child(1) {
+			  background-color: #3e245d;
+			  border-left: 2px solid #ff3f75;
+			}
+			
+			.echart-rel ul.list>li:nth-child(2) {
+			  background-color: #1f3275;
+			  border-left: 2px solid #3f95ff;
+			}
+			.echart-rel ul.list>li>span:nth-child(1)::before{
+			  content:counter(sectioncounter); 
+			  counter-increment:sectioncounter;
+			}
+			.echart-rel ul.list>li>span.name{
+				flex: 1;
+			    text-align: right;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			}
+			.echart-rel ul.list>li:nth-child(3) {
+			  background-color: #1e3b6a;
+			  border-left: 2px solid #30d5b4;
+			}
+			
+			.echart-rel ul.list>li:nth-child(1)::before,
+			.echart-rel li:nth-child(2)::before,
+			.echart-rel li:nth-child(3)::before {
+			  content: 'TOP';
+			}
+			
+			.echart-rel ul.list>li::after {
+			  clear: both;
+			}
+			
+			.echart-rel ul.list>li:hover {
+			  box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+			  border-radius: 4px;
+			  transform: scale(1.1);
+			  /*border: none;*/
+			}
+			
+			.echart-rel ul.list>li>span {
+			  display: inline-block;
+			}
+			
+			.echart-rel ul.list>li>span.provice {
+			  float: right;
+			}
+			.echart-rel{
+				display: flex;
+				justify-content: space-between;
+			}
+			.relative{
+				position: relative;
+			}
+			.abs{
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+			.homepage-height{
+				padding:15px 0;
+				box-sizing: border-box;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			/*地图样式*/
+			#chinaMap,
+			#worldMap {
+				width: 100%;
+				height: 100%;
+			  	float: left;
+			  	position: relative;
+			}
+			
+			.area_name {
+			  font-size: 12px;
+			  fill: #000;
+			}
+			
+			.map_popOver {
+			  position: absolute;
+			  width: 3.9rem;
+			  height: 2rem;
+			  background: url('../resource/image/tooltip-bg.png');
+			  background-size: cover;
+			  padding: 0.1rem 0.09rem 0.18rem 0.32rem;
+			  box-sizing: border-box;
+			  z-index: 9999;
+			}
+			
+			.map_popOver h4 {
+			  margin: 0;
+			  font-size: 0.22rem;
+			  color: #06ebff;
+			  line-height: 0.46rem;
+			}
+			
+			.map_popOver p {
+			  margin: 0;
+			  font-size: 0.14rem;
+			  line-height: 0.3rem;
+			  color: #fff;
+			}
+			
+			.china-line {
+			  width: 0.3rem;
+			  height: 1.5rem;
+			  position: absolute;
+			}
+			.map_popOver{
+				display: flex;
+				flex-direction: column;
+			}
+			.map_popOver p{
+				flex: 1;
+				overflow : hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp:4;
+				-webkit-box-orient: vertical;
+				_overflow: hidden;
+				height: 70%;
+			}
+		/*饼图*/
+		.title-label{
+			color:#5f7ae0;
+		}
+		/*修改bug*/
+		.sub-list-boxs{
+			display: flex;
+			flex-direction: column;
+		}
+		.sub-list-boxs .list{
+			display: flex;
+			flex-direction: column;
+			flex: 10;;
+		}
+		.sub-list-boxs .list li{
+			flex: 1;
+			padding: 0 10px;
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+		}
+		/*bug*/
+		.left-content,.center-content,.right-content{
+			display: flex;
+			flex-direction: column;
+		}
+		.echart-number,.echart-spread,.echart-history,.echart-bus-num,.echart-bus-type,.echart-view-num{
+			flex: 1;
+		}
+		.echart-rel{
+			display: flex;
+			flex-direction: row;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div class="root" v-template-root>
+			<div class="barMarketData" style="display: none" id="barMarketData">
+				<div class="homepage-height">
+					<section class="main-wrapyj">
+						<div class="left-content center-flex1">
+							<div class="center_container" id="left-container">
+								<div class="center-flex2">
+									<!-- 企业类型 -->
+									<div class="business-type">
+										<div class="rank" id="rank"></div>
+									</div>
+								</div>
+							
+								<div class="center-flex7 echart-flex">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title">
+										<p class="titlt-name">
+											<b>酒企分布排行</b>
+										</p>
+										<i class="icon">
+								          <span class="skew"></span>
+								          <span class="line"></span>
+								        </i>
+									</div>
+									<!-- 酒企分布排行排行榜 -->
+									<div class="echart-spread-flex echart-rel">
+										<div id="sub-list01" class="sub-list sub-list-boxs">
+									      <h3>酒企数量最多的省份</h3>
+									      <ul class="list"></ul>
+									    </div>
+									    <div id="sub-list02" class="sub-list sub-list-boxs">
+									      <h3>酒企密度最高的地区</h3>
+									      <ul class="list"></ul>
+									    </div>
+									</div>
+								</div>
+							
+								<div class="center-flex5 echart-flex">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title">
+										<p class="titlt-name">
+											<b>营收排行</b>
+										</p>
+										<i class="icon">
+								          <span class="skew"></span>
+								          <span class="line"></span>
+								        </i>
+									</div>
+									<!-- 营收排行图表 -->
+									<div class="echart-spread-flex">
+										<div class="echart-number" id="rank-number"></div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="center-content martop center-flex2">
+							<div class="center_container" id="center_container">
+								<div class="center-flex2 echart-flex relative">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title title-margin">
+										<p class="titlt-name">
+											<b id="area-type">全国酒企分布图</b>
+										</p>
+										<i class="icon small-icon">
+							              <span class="skew"></span>
+							              <span class="line"></span>
+							            </i>
+							            
+									</div>
+									<div class="titleBtn abs">
+											
+											<div class="btnStyle flowOut active" id='btn1'>
+												全国
+											</div>
+											<div class="btnStyle flowInto" id='btn2'>
+												全球
+											</div>
+										</div>
+									<div class="echart-spread-flex">
+										<div class="echart-spread" id="chinaMap" >
+
+										</div>
+									</div>
+								</div>
+								<div class="center-flex1 echart-flex">
+									<div class="title title-margin">
+										<p class="titlt-name">
+											<b>酒企历史</b>
+										</p>
+										<i class="icon big-icon">
+							              <span class="skew"></span>
+							              <span class="line"></span>
+							            </i>
+									</div>
+									<div class="echart-spread-flex">
+										<div class="echart-history" id="echart-history">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="right-content martop center-flex1">
+							<div class="center_container" id="righr-container">
+								<div class="center-flex1 echart-flex">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title title-margin">
+										<p class="titlt-name">
+											<b>酒产品度数分布</b>
+										</p>
+										<i class="icon big-icon">
+							              <span class="skew"></span>
+							              <span class="line"></span>
+							            </i>
+									</div>
+									<!-- 酒产品度数分布图表 -->
+									<div class="echart-spread-flex">
+										<div class="echart-bus-num" id="echart-bus-num">
+
+										</div>
+									</div>
+									
+								</div>
+								<div class="center-flex1 echart-flex">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title title-margin">
+										<p class="titlt-name">
+											<b>酒企规模分布</b>
+										</p>
+										<i class="icon big-icon">
+							              <span class="skew"></span>
+							              <span class="line"></span>
+							            </i>
+									</div>
+									<!-- 酒企规模分布图表 -->
+									<div class="echart-spread-flex">
+										<div class="echart-bus-type" id="echart-bus-type">
+
+										</div>
+									</div>
+									
+								</div>
+								<div class="center-flex1 echart-flex">
+									<!-- 标题的红线和蓝线 -->
+									<div class="title title-margin">
+										<p class="titlt-name">
+											<b>酒企类型分布</b>
+										</p>
+										<i class="icon big-icon">
+							              <span class="skew"></span>
+							              <span class="line"></span>
+							            </i>
+									</div>
+									<!-- 酒企类型分布 -->
+									<div class="echart-spread-flex">
+										<div class="echart-view-num" id="echart-view-num">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

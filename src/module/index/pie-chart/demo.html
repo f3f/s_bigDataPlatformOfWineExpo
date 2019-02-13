@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: calc(100vw / 13.66);
+    }
+
+    #pieChart {
+      width: 6rem;
+      height: 4rem;
+      transform: translate(200px, 0);
+      border: 1px solid #0f0;
+      position: relative;
+    }
+
+    #chart {
+      width: 3rem;
+      height: 2rem;
+      transform: translate(900px, -400px);
+      border: 1px solid #0f0;
+    }
+    .title-label{
+      margin: 0;
+      color:#3A4798;
+      font-size: 12px;
+      width:100%;
+      position: absolute;
+      bottom:0.5%;
+      text-align: center;
+      padding-right:20%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="pieChart"></div>
+  <div id="chart"></div>
+  <script src="./echarts.min.js"></script>
+  <script src="index.js"></script>
+  <script>
+    var pieChart = new PieChart();
+    pieChart.init({
+      id: 'pieChart',
+      radius: ['40%', '70%'],
+      center: ['46%', '50%'],
+      color: ['#FE4543', '#424FF7', '#FB0578', '#CE28D9', '#9140EB', '#26A8FD'],
+      isDoubleLabel: true, //true为内外层都显示标签，false为只显示外层标签
+      isLabelShow:true
+    });
+    pieChart.setData([{
+      value: 335,
+      name: '合同金额'
+    }, {
+      value: 310,
+      name: '到货金额'
+    }, {
+      value: 234,
+      name: '及时到货金额'
+    }, {
+      value: 135,
+      name: '超期到货金额'
+    }, {
+      value: 1548,
+      name: '预算金额'
+    }])
+
+    setTimeout(function() {
+      pieChart.setData([{
+        value: 3,
+        name: '合同金额'
+      }, {
+        value: 4,
+        name: '到货金额'
+      }, {
+        value: 5,
+        name: '及时到货金额'
+      }, {
+        value: 6,
+        name: '超期到货金额'
+      }, {
+        value: 7,
+        name: '预算金额'
+      }])
+    }, 2000)
+
+    var chart = new PieChart();
+    chart.init({
+      id: 'chart',
+      radius: ['40%', '70%'],
+      center: ['46%', '50%'],
+      color: ['#FE4543', '#424FF7', '#FB0578', '#CE28D9', '#9140EB', '#26A8FD'],
+      isDoubleLabel: true, //true为内外层都显示标签，false为只显示外层标签
+      isLabelShow:true
+    })
+    chart.setData([{
+      value: 12,
+      name: 'aaa'
+    }, {
+      value: 21,
+      name: 'bbb'
+    }, {
+      value: 34,
+      name: 'ccc'
+    }, {
+      value: 23,
+      name: 'ddd'
+    }, {
+      value: 42,
+      name: 'eee'
+    }])
+  </script>
+</body>
+
+</html>

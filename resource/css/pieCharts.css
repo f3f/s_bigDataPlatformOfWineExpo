@@ -1,0 +1,35 @@
+.pieBox{
+	float: left;
+	width: 248px;
+	height: 240px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: #fff;
+}
+.pieBox2{
+	float: left;
+	width: 346px;
+	height: 240px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	background: #fff;
+}
+.flow-pieBox{
+	float: left;
+	width: 230px;
+	height: 220px;
+	margin-left: 40px;
+	margin-bottom: 10px;
+	background: #fff;
+}
+.flow-pieBox2{
+	float: left;
+	width: 230px;
+	height: 220px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	background: #fff;
+}
+.noborderBottom{
+	margin-bottom: 0px;
+}

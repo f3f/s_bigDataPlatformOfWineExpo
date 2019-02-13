@@ -1,0 +1,39 @@
+{
+	"resultCode": 1,
+	"dataSize": 10,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"amount": 1153
+		}, {
+			"amount": 88,
+			"name": "AUS"
+		}, {
+			"amount": 14,
+			"name": "BEL"
+		}, {
+			"amount": 12,
+			"name": "CUB"
+		}, {
+			"amount": 11,
+			"name": "DNK"
+		}, {
+			"amount": 27,
+			"name": "FRA"
+		}, {
+			"amount": 48,
+			"name": "JPN"
+		}, {
+			"amount": 12,
+			"name": "NLD"
+		}, {
+			"amount": 13,
+			"name": "GBR"
+		}, {
+			"amount": 27,
+			"name": "USA"
+		}
+	]
+}

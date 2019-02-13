@@ -1,0 +1,40 @@
+{
+	"resultCode": 1,
+	"dataSize": 34,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"quantity": 84,
+			"province": "山东省"
+		}, {
+			"quantity": 54,
+			"province": "河北省"
+		}, {
+			"quantity": 48,
+			"province": "江苏省"
+		}, {
+			"quantity": 46,
+			"province": "河南省"
+		}, {
+			"quantity": 42,
+			"province": "北京市"
+		}, {
+			"quantity": 38,
+			"province": "辽宁省"
+		}, {
+			"quantity": 36,
+			"province": "安徽省"
+		}, {
+			"quantity": 31,
+			"province": "山西省"
+		}, {
+			"quantity": 30,
+			"province": "吉林省"
+		}, {
+			"quantity": 24,
+			"province": "湖北省"
+		}
+	]
+}

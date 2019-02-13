@@ -1,0 +1,68 @@
+/** css  */
+.navigation-main div,
+.navigation-main span,
+.navigation-main form,
+.navigation-main button,
+.navigation-main ul,
+.navigation-main li,
+.navigation-main a,
+.navigation-main i,
+.navigation-main img,
+.navigation-main section,
+.navigation-main label {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.navigation-main {
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    margin-left: -640px;
+    width: 1280px;
+    color: #FFFFFF;
+}
+
+.navigation-body {
+    z-index: 10;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 100vh;
+    background: #232532;
+    color: #FFFFFF;
+    /*border-right: 1px solid #2481cd;*/
+}
+
+#homepage, #memberflow {
+    height: 100px;
+    /*border-bottom: 1px solid #49595f;*/
+    color: #e53428;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 30px;
+}
+
+#homepage > span {
+    display: block;
+    width: 26px;
+    height: 25px;
+    background: url("../image/nav/memberMapIcon.png");
+    margin: 0px auto 10px auto;
+}
+
+#memberflow > span {
+    display: block;
+    width: 26px;
+    height: 25px;
+    background: url("../image/nav/memberFlowIcon.png");
+    margin: 0px auto 10px auto;
+}
+
+.navigation-body .nav-active {
+    background-color: #fcfcfc;
+}

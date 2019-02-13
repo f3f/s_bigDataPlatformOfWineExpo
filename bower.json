@@ -1,0 +1,18 @@
+{
+  "name": "commonjs-simulation",
+  "description": "CommonJS环境模拟",
+  "main": "src/index.js",
+  "authors": [
+    "Who"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

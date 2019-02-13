@@ -1,0 +1,31 @@
+{
+	"resultCode": 1,
+	"dataSize": 7,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"VALUE": 92670,
+			"NAME": "其它"
+		}, {
+			"VALUE": 42682,
+			"NAME": "啤酒"
+		}, {
+			"VALUE": 242057,
+			"NAME": "白酒"
+		}, {
+			"VALUE": 322498,
+			"NAME": "葡萄酒"
+		}, {
+			"VALUE": 95119,
+			"NAME": "果露酒"
+		}, {
+			"VALUE": 365237,
+			"NAME": "洋酒"
+		}, {
+			"VALUE": 17465,
+			"NAME": "黄酒"
+		}
+	]
+}

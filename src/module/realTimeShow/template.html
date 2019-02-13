@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>导航</title>
+		<style v-template-style>
+			.realTimeShow {
+				display: flex;
+				width: 100%;
+				overflow: hidden;
+				flex-direction: column;
+				flex: 1;
+			}
+			
+			.main-wrap2 {
+				flex: 1;
+				display: flex;
+				justify-content: space-around;
+				flex-direction: row;
+				margin-top: 12px;
+			}
+			
+			.realTimeShow .left-content,
+			.realTimeShow .right-content {
+				display: flex;
+				padding: 20px;
+				flex-direction: column;
+			}
+			
+			.realTimeShow .left-content {
+				flex: 5
+			}
+			
+			.realTimeShow .right-content {
+				flex: 13;
+			}
+			
+			.rc {
+				flex: 1;
+				display: flex;
+			}
+			
+			.rc_left {
+				flex: 9;
+				margin-right: 18px;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.rc_right {
+				flex: 4;
+				margin-left: 18px;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.r_chart1 {
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.r_chart2 {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.left_tit {
+				font-size: 0.2rem;
+				width: 100%;
+				color: #fff;
+				text-align: center;
+				position: relative;
+			}
+			
+			.lt_t2,
+			.rt_t2 {
+				color: #06EBFF;
+			}
+			
+			.lt_t3,
+			.rt_t3 {
+				font-size: 0.13rem;
+			}
+			
+			.left_tit:after,
+			.right_tit:after {
+				content: '';
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				right: 0px;
+				bottom: 0px;
+				background: repeating-linear-gradient(-45deg, rgba(6, 235, 255, .5) 0px, rgba(6, 235, 255, .5) 4px, transparent 5px, transparent 6px);
+				background-size: 100% 100%;
+				opacity: 0.2;
+				pointer-events: none;
+			}
+			
+			.right_tit {
+				font-size: 0.2rem;
+				width: 100%;
+				color: #fff;
+				text-align: center;
+				position: relative;
+			}
+			
+			.left_chart {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.mid_chart {
+				flex: 1;
+				border: 1px solid #374a9b;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.l_chart {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			#l_chart1 {
+				/*flex: 11;*/
+			}
+			
+			#l_chart2 {
+				flex: 1;
+			}
+			
+			#r_chart1,
+			#r_chart2,
+			#r_chart3,
+			#r_chart4 {
+				flex: 1;
+			}
+			
+			.realTimeShow .ibox {
+				height: 60px;
+				white-space: nowrap;
+			}
+			
+			.realTimeShow .title {
+				position: relative;
+				left: 0;
+				top: 20px;
+			}
+			.realTimeShow .i-content{
+				padding: 0;
+			}
+			
+			#r_chart1{
+				overflow: hidden;
+				display: flex;
+			}
+			
+			
+			/*中间图表*/
+			#r_chart1 div.wrap {
+				width: 100%;
+				flex: 1;
+				overflow: hidden;
+				box-sizing: border-box;
+				margin-top: 50px;
+				display: flex;
+				flex-direction: column;
+			}
+			#r_chart1 div.wrap>.nav{
+				flex: 1;
+			}
+			#r_chart1 div.wrap>.titless{
+				flex: 1;
+			}
+			#r_chart1 div.wrap>.mid_list{
+				flex: 8;
+				overflow: hidden;
+			}
+			
+			#r_chart1 div.nav>a {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				display: block;
+				float: left;
+				text-decoration: none;
+				color: #06ebff;
+				font-size: 0.12rem;
+				text-align: center;
+				width: 0.6rem;
+				height: 0.2rem;
+				line-height: 0.2rem;
+				margin-right: 20px;
+				background-image: url('../resource/image/rect.png');
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			#r_chart1 div.nav>a:hover {
+				background-image: url('../resource/image/rect-back.png');
+				color: #fff;
+			}
+			
+			#r_chart1 div.nav>a.active {
+				background-image: url('../resource/image/rect-back.png');
+				color: #fff;
+			}
+			
+			#r_chart1 div.titless {
+				line-height: 0.3rem;
+			}
+			
+			#r_chart1 ul.list {
+				list-style: none;
+				padding: 0;
+			}
+			
+			#r_chart1 ul.list>li {
+				height: 25%;
+				color: #fff;
+				line-height: 1em;
+				box-sizing: border-box;
+				padding: .05rem .1rem;
+				/*margin-bottom: 2%;*/
+				font-size: 0.12rem;
+				cursor: pointer;
+				text-align: left;
+			}
+			
+			#r_chart1 div.titless::after,
+			#r_chart1 ul.list>li::after {
+				clear: both;
+			}
+			
+			#r_chart1 .top1 {
+				background-color: #3e245d;
+				border-left: 2px solid #ff3f75;
+			}
+			
+			#r_chart1 .top2 {
+				background-color: #1f3275;
+				border-left: 2px solid #3f95ff;
+			}
+			
+			#r_chart1 .top3 {
+				background-color: #1e3b6a;
+				border-left: 2px solid #30d5b4;
+			}
+			
+			
+			#r_chart1 div.titless>span,
+			#r_chart1 ul.list>li>span {
+				display: inline-block;
+				float: left;
+				/*width: 25%;*/
+				color: #fff;
+				font-size: 0.13rem;
+				height: 100%;
+			}
+			#r_chart1 ul.list>li>span:nth-child(1),#r_chart1 div.titless>span:nth-child(1){
+				width: 10%;
+			}
+			#r_chart1 ul.list>li>span:nth-child(2),#r_chart1 div.titless>span:nth-child(2){
+				width: 50%;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			#r_chart1 ul.list>li>span:nth-child(3),#r_chart1 div.titless>span:nth-child(3){
+				width: 20%;
+			}
+			#r_chart1 ul.list>li>span:nth-child(4),#r_chart1 div.titless>span:nth-child(4){
+				width: 20%;
+			}
+			#r_chart1>.wrap>.titless>span:nth-child(1){
+				text-indent: 10px;
+			}
+			#r_chart1>.wrap>.titless>span:nth-child(2){
+				text-indent: 10px;
+			}
+			#r_chart1>.wrap>.titless>span:nth-child(3){
+				text-indent: -4px;
+			}
+			#r_chart1>.wrap>.titless>span:nth-child(4){
+				text-indent: -5px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="root" v-template-root>
+			<div id="realTimeShow" class="realTimeShow" style="display: none;">
+				<div class="realTimeShow">
+					<section class="main-wrap2">
+						<div class="left-content">
+							<div class="left_tit ibox">
+								<div class="i-content">
+									<span><span class="lt_t1">2017-03-18</span>共签到 : <span class="lt_t2"><span id="qdrs"></span><span class="lt_t3"> 人次</span></span>
+								</div>
+								<p class="left"></p>
+								<p class="right"></p>
+							</div>
+							<div class="left_chart">
+								<div class="title">
+									<p class="titlt-name">
+										<b>本次展会签到人数</b>
+									</p>
+									<i class="icon big-icon">
+								        <span class="skew"></span>
+								        <span class="line"></span>
+							        </i>
+								</div>
+								<div class="l_chart">
+									<div id="l_chart1">
+
+									</div>
+									<div id="l_chart2">
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="right-content">
+
+							<div class="right_tit ibox">
+								<div class="i-content">
+									<span><span class="rt_t1">2017-03-18</span>共签约 : <span class="rt_t2"><span id="gqy"></span><span class="rt_t3"> 亿元</span></span>
+								</div>
+								<p class="left"></p>
+								<p class="right"></p>
+							</div>
+							<div class="rc">
+								<div class="rc_left">
+									<div class="r_chart1">
+										<div class="title">
+											<p class="titlt-name">
+												<b>本次展会酒品签约额排行榜</b>
+											</p>
+											<i class="icon big-icon">
+										        <span class="skew"></span>
+										        <span class="line"></span>
+									        </i>
+										</div>
+										<div id="r_chart1">
+											<div class="wrap">
+												<div class="nav">
+													<a href="#" class="winea active">全部</a>
+													<a href="#" class="wine">酒</a>
+													<a href="#" class="wineb">酒类包装</a>
+													<a href="#" class="winey">酿酒原料</a>
+													<a href="#" class="winee">其它</a>
+												</div>
+												<div class="titless">
+													<span>排名</span>
+													<span>公司名称</span>
+													<span>签单金额</span>
+													<span>产业类别</span>
+												</div>
+												<div id="mid_list" class="mid_list">
+													<ul class="list">
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="r_chart2">
+										<div class="title">
+											<p class="titlt-name">
+												<b>本次展会签约额增长走势</b>
+											</p>
+											<i class="icon big-icon">
+										        <span class="skew"></span>
+										        <span class="line"></span>
+									        </i>
+										</div>
+										<div id="r_chart2">
+
+										</div>
+									</div>
+
+								</div>
+								<div class="rc_right">
+									<div class="r_chart1">
+										<div class="title">
+											<p class="titlt-name">
+												<b>历年酒类签约额走势</b>
+											</p>
+											<i class="icon big-icon">
+										        <span class="skew"></span>
+										        <span class="line"></span>
+									        </i>
+										</div>
+										<div id="r_chart3">
+
+										</div>
+									</div>
+									<div class="r_chart2">
+										<div class="title">
+											<p class="titlt-name">
+												<b>历年签约额增长走势</b>
+											</p>
+											<i class="icon big-icon">
+										        <span class="skew"></span>
+										        <span class="line"></span>
+									        </i>
+										</div>
+										<div id="r_chart4">
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
