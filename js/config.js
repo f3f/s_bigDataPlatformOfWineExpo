@@ -1,5 +1,5 @@
-
-window.baseApiPath='../src/module/json'
+﻿
+window.baseApiPath='./json2'
 
 window.speed=100000000*60*60*24;
 

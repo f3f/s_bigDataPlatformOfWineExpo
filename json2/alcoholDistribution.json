@@ -1,0 +1,16 @@
+{
+	"resultCode": 1,
+	"dataSize": 1,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"40度以上": 2208,
+			"10~20度": 0,
+			"10度以下": 30,
+			"20~30度": 26,
+			"30~40度": 21
+		}
+	]
+}

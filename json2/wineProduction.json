@@ -1,0 +1,40 @@
+{
+	"resultCode": 1,
+	"dataSize": 10,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"quantity": 64000,
+			"YEAR": "2008"
+		}, {
+			"quantity": 970,
+			"YEAR": "2009"
+		}, {
+			"quantity": 890,
+			"YEAR": "2010"
+		}, {
+			"quantity": 1025,
+			"YEAR": "2011"
+		}, {
+			"quantity": 1153,
+			"YEAR": "2012"
+		}, {
+			"quantity": 1225,
+			"YEAR": "2013"
+		}, {
+			"quantity": 1257,
+			"YEAR": "2014"
+		}, {
+			"quantity": 1312,
+			"YEAR": "2015"
+		}, {
+			"quantity": 1215,
+			"YEAR": "2016"
+		}, {
+			"quantity": 32196,
+			"YEAR": "2017"
+		}
+	]
+}

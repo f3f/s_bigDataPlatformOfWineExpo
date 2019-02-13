@@ -1,0 +1,30 @@
+{
+	"resultCode": 1,
+	"dataSize": 8,
+	"objectRecordId": null,
+	"isSuccess": true,
+	"resultMessage": "查询统计结果成功",
+	"data": [
+		{
+			"Foreign": 252,
+			"YearDate": "2017",
+			"Domestic": 1139
+		}, {
+			"Foreign": 112,
+			"YearDate": "2016",
+			"Domestic": 780
+		}, {
+			"Foreign": 281,
+			"YearDate": "2015",
+			"Domestic": 421
+		}, {
+			"Foreign": 69,
+			"YearDate": "2014",
+			"Domestic": 236
+		}, {
+			"Foreign": 21,
+			"YearDate": "2013",
+			"Domestic": 127
+		}
+	]
+}
